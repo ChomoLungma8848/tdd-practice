@@ -1,12 +1,38 @@
 package main
 
-import(
+import (
 	"testing"
 )
 
 func TestUpperEndpoint(t *testing.T) {
 	integerClosedRange := NewIntegerClosedRange(1, 2)
-	if integerClosedRange.upper != 2 {
-		t.Errorf( "expected 2, but got %v", integerClosedRange.upper)
+	got := integerClosedRange.Upper()
+	expected := 2
+	if got != expected {
+		t.Errorf("expected %v, but got %v", expected, got)
 	}
+
+	integerClosedRange = NewIntegerClosedRange(1, 5)
+	got = integerClosedRange.Upper()
+	expected = 5
+	if got != expected {
+		t.Errorf("expected %v, but got %v", expected, got)
+	}
+
+	integerClosedRange = NewIntegerClosedRange(1, 100)
+	got = integerClosedRange.Upper()
+	expected = 100
+	if got != expected {
+		t.Errorf("expected %v, but got %v", expected, got)
+	}
+}
+
+func TestLowerEndpoint(t *testing.T) {
+	integerClosedRange := NewIntegerClosedRange(1, 5)
+	got := integerClosedRange.Lower()
+	expected := 1
+	if got != expected {
+		t.Errorf("expected %v, but got %v", expected, got)
+	}
+
 }
