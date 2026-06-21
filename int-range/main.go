@@ -30,6 +30,10 @@ func (i integerClosedRange) isEquivalent(input integerClosedRange) bool {
 	return i == input
 }
 
+func (i integerClosedRange) isContainRange(input integerClosedRange) bool {
+	return i.isContain(input.lower) && i.isContain(input.upper)
+}
+
 func main() {
 }
 
