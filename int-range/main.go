@@ -1,12 +1,14 @@
 package main
 
+import "errors"
+
 type integerClosedRange struct {
 	lower int
 	upper int
 }
 
 func (i integerClosedRange) Lower() int {
-	return 1
+	return i.lower
 }
 
 func (i integerClosedRange) Upper() int {
@@ -16,6 +18,10 @@ func (i integerClosedRange) Upper() int {
 func main() {
 }
 
-func NewIntegerClosedRange(lower int, upper int) integerClosedRange {
-	return integerClosedRange{lower: lower, upper: upper}
+func NewIntegerClosedRange(lower int, upper int) (integerClosedRange, error) {
+	if lower >= upper {
+		return integerClosedRange{}, errors.New("invalid arguments")
+	}
+
+	return integerClosedRange{lower: lower, upper: upper}, nil
 }
