@@ -88,3 +88,22 @@ func TestStringFormat(t *testing.T) {
 		t.Errorf("expected %v, but got %v", expected, got)
 	}
 }
+
+func TestContaindPoint(t *testing.T) {
+	lower, upper := 1, 2
+	integerClosedRange, _ := NewIntegerClosedRange(lower, upper)
+	got := integerClosedRange.isContain(2)
+	expected := true
+	if got != expected {
+		t.Errorf("expected %v, but got %v", expected, got)
+	}
+
+	lower, upper = 1, 2
+	integerClosedRange, _ = NewIntegerClosedRange(lower, upper)
+	got = integerClosedRange.isContain(3)
+	expected = false
+	if got != expected {
+		t.Errorf("expected %v, but got %v", expected, got)
+	}
+}
+

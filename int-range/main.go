@@ -22,6 +22,10 @@ func (i integerClosedRange) String() string {
 	return fmt.Sprintf("[%v, %v]", i.lower, i.upper)
 }
 
+func (i integerClosedRange) isContain(point int) bool {
+	return (point >= i.lower && point <= i.upper)
+}
+
 func main() {
 }
 
