@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -59,5 +60,31 @@ func TestValidRange(t *testing.T) {
 	_, err = NewIntegerClosedRange(5, 1)
 	if err == nil {
 		t.Errorf("Error must not be nil")
+	}
+}
+
+func TestStringFormat(t *testing.T) {
+	lower, upper := 1, 2
+	integerClosedRange, _ := NewIntegerClosedRange(lower, upper)
+	got := integerClosedRange.String()
+	expected := fmt.Sprintf("[%v, %v]", lower, upper)
+	if got != expected {
+		t.Errorf("expected %v, but got %v", expected, got)
+	}
+
+	lower, upper = 3, 4
+	integerClosedRange, _ = NewIntegerClosedRange(lower, upper)
+	got = integerClosedRange.String()
+	expected = fmt.Sprintf("[%v, %v]", lower, upper)
+	if got != expected {
+		t.Errorf("expected %v, but got %v", expected, got)
+	}
+
+	lower, upper = 5, 6
+	integerClosedRange, _ = NewIntegerClosedRange(lower, upper)
+	got = integerClosedRange.String()
+	expected = fmt.Sprintf("[%v, %v]", lower, upper)
+	if got != expected {
+		t.Errorf("expected %v, but got %v", expected, got)
 	}
 }

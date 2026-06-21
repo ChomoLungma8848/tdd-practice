@@ -1,6 +1,9 @@
 package main
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 type integerClosedRange struct {
 	lower int
@@ -13,6 +16,10 @@ func (i integerClosedRange) Lower() int {
 
 func (i integerClosedRange) Upper() int {
 	return i.upper
+}
+
+func (i integerClosedRange) String() string {
+	return fmt.Sprintf("[%v, %v]", i.lower, i.upper)
 }
 
 func main() {
