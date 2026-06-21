@@ -26,6 +26,10 @@ func (i integerClosedRange) isContain(point int) bool {
 	return (point >= i.lower && point <= i.upper)
 }
 
+func (i integerClosedRange) isEquivalent(input integerClosedRange) bool {
+	return i == input
+}
+
 func main() {
 }
 

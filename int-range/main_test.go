@@ -107,3 +107,27 @@ func TestContaindPoint(t *testing.T) {
 	}
 }
 
+func TestEquivalentRange(t *testing.T) {
+	tests := []struct {
+		host     integerClosedRange
+		input    integerClosedRange
+		expected bool
+	}{
+		{integerClosedRange{lower: 1, upper: 2}, integerClosedRange{lower: 1, upper: 2}, true},
+		{integerClosedRange{lower: 2, upper: 2}, integerClosedRange{lower: 2, upper: 2}, true},
+		{integerClosedRange{lower: 2, upper: 2}, integerClosedRange{lower: 1, upper: 4}, false},
+		{integerClosedRange{lower: 2, upper: 2}, integerClosedRange{lower: 1, upper: 5}, false},
+		{integerClosedRange{lower: 2, upper: 2}, integerClosedRange{lower: 1, upper: 2}, false},
+		{integerClosedRange{lower: 4, upper: 5}, integerClosedRange{lower: 4, upper: 5}, true},
+		{integerClosedRange{lower: 4, upper: 5}, integerClosedRange{lower: 6, upper: 7}, false},
+	}
+
+	for _, tt := range tests {
+		t.Run("hoge", func(t *testing.T) {
+			actual := tt.host.isEquivalent(tt.input)
+			if actual != tt.expected {
+				t.Errorf("got %v, expected %v", actual, tt.expected)
+			}
+		})
+	}
+}
